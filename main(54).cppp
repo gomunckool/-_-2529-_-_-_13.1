@@ -1,0 +1,41 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#include "dod.h"
+#include "sum.h"
+#include "var.h"
+
+using namespace std;
+using namespace nsDod;
+using namespace nsSum;
+using namespace nsVar;
+
+int main() {
+    cout << "x_p = "; cin >> x_p;
+    cout << "x_k = "; cin >> x_k;
+    cout << "dx  = "; cin >> dx;
+    cout << "eps = "; cin >> e;
+
+    cout << endl;
+    cout << "-------------------------------------------------------------------------" << endl;
+    cout << "|" << setw(10) << "x" << " |" 
+         << setw(15) << "ln(1+x)" << " |" 
+         << setw(15) << "Taylor Sum" << " |" 
+         << setw(10) << "n" << " |" << endl;
+    cout << "-------------------------------------------------------------------------" << endl;
+
+    x = x_p;
+    while (x <= x_k + dx / 2) { 
+        sum();
+        
+        cout << "|" << setw(10) << fixed << setprecision(4) << x << " |"
+             << setw(15) << setprecision(6) << log(1 + x) << " |"
+             << setw(15) << setprecision(6) << s << " |"
+             << setw(10) << n << " |" << endl;
+        
+        x += dx;
+    }
+    cout << "-------------------------------------------------------------------------" << endl;
+
+    return 0;
+}
